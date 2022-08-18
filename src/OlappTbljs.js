@@ -12,8 +12,8 @@ export default class OlappTbl extends LitElement {
   static get properties() {
     return {
       counter: { type: String },
-      datos: { type: Array },
-      columns: { type: Object },
+      datos: { type: Array, reflect:true },
+      columns: { type: Object, reflect:true },
       cantidad: { type: Number },
       activo: { type: Number },
       numData: { type: Number },
@@ -23,8 +23,8 @@ export default class OlappTbl extends LitElement {
       initFilter: { type: String },
       copia: { type: Array },
       viewContent: { type: Object },
-      selectMultiple: {type:Boolean},
-      selected:{type:String}
+      selectMultiple: {type:Boolean, reflect:true},
+      selected:{type:String, reflect:true}
     };
   }
 
@@ -184,6 +184,10 @@ export default class OlappTbl extends LitElement {
     this.columns=e.detail
   }
   _changeCheck(e){
-    this.selected = JSON.stringify(e.detail.data)
+    if(e.detail.status){
+      this.selected = JSON.stringify(e.detail.data)
+    }else{
+      this.selected = ""
+    }
   }
 }

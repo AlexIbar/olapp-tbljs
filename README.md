@@ -1,48 +1,77 @@
-# \<olapp-tbljs>
 
-This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
+# Olapp Tbljs
 
-## Installation
+- Componente web construido en Lit.js para la creación de tablas basicas
 
-```bash
-npm i olapp-tbljs
-```
+# Como usuario
 
-## Usage
-
+- Definición del componente
 ```html
-<script type="module">
-  import 'olapp-tbljs/olapp-tbljs.js';
-</script>
-
-<olapp-tbljs></olapp-tbljs>
+    <olapp-tbljs id="tbl" .columns=${this.columns} .selectMultiple=${this.canMultipleCheck} .datos=${this.datos} @olapp-change-check=${this._checkear}>
+        some light-dom
+    </olapp-tbljs>
 ```
 
-## Testing with Web Test Runner
+- Tener en cuenta que el componente recibe los siguientes parametros:
+    - .columns -> Es un Objeto Json el cual tiene datos de configuración y la información que se va pintar en el encabezado de la tabla
+    - .datos -> Es un array de objetos Json el cual contiene el cuerpo de la información que se va pintar en el cuerpor de la tabla
+    - .selectMultiple -> es un boolean que le informa a la tabla si permite selección multiple o no
+    - @olapp-change-check -> evento que se dispara cada que el usuario selecciona el checkbox
 
-To execute a single test run:
+## Diseño de la información que recibe: 
 
-```bash
-npm run test
+#### -  Columns
+```json
+this.columns = {
+    option:{
+        type:"input",
+        title:"#",
+        filter:false
+    },
+    impreso:{
+        type:"string", //Tipo de dato
+        title:"Impreso", //Titulo que aparecera en el encabezado
+        filter:true, //True si la columna puede ser filtrada
+        identificador:"impreso", //Identificador con el que hace match con la numbre de la columna o key de los datos
+        reglas:[ //Regla para agregar algun resaltado en la celda de la data
+          {
+            estado:"Generada",
+            color:"successful"
+          }
+        ]
+    }
+}
+
 ```
 
-To run the tests in interactive watch mode run:
+#### -  Datos
+```json
+this.datos = {
+    {
+        "impreso": "Generada"
+    },
+    {
+        "impreso": "Generar"
+    },
+}
 
-```bash
-npm run test:watch
 ```
 
+#### Variables css para personalización
 
-## Tooling configs
-
-For most of the tools, the configuration is in the `package.json` to minimize the amount of files in your project.
-
-If you customize the configuration a lot, you can consider moving them to individual files.
-
-## Local Demo with `web-dev-server`
-
-```bash
-npm start
+```css
+    :root{
+      --olapp-header-background:rgb(58, 123, 191);
+      --olapp-header-color:white;
+      --olapp-header-hover:rgb(37, 103, 173);
+      --olapp-color-primary: rgb(37, 103, 173);
+      --olapp-color-secondary:rgb(255,209,0);
+      --olapp-2n-background-rows:#f2f2f28f;
+      --olapp-color-warning:rgba(243, 243, 156, 0.68);
+      --olapp-color-danger:#ffdddd;
+      --olapp-color-successful:rgb(5 186 5 / 20%);
+    }
 ```
 
-To run a local development server that serves the basic demo located in `demo/index.html`
+# Comandos
+    - npm i olapp-tbljs

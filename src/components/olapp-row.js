@@ -7,13 +7,27 @@ export class OlappRow extends LitElement {
         css`
             td{
                 padding: 5px;
-                text-align: center;
-                border-radius: 5px;
-                box-sizing:border-box
+                /* border-radius: 5px; */
+                box-sizing: border-box;
+                height: 58px;
+                align-items: center;
+                /* align-self: center; */
+                display: flex;
             }
             .successful{
-                background-color:#00800069 !important;
-                color: white;
+                background-color:rgb(5 186 5 / 20%);
+                text-align:center
+            }
+            .warning{
+                background-color:rgba(243, 243, 156, 0.68);
+                text-align:center
+            }
+            .danger{
+                background-color:#ffdddd;
+                text-align:center
+            }
+            .centrar{
+                justify-content:center
             }
         `
     ]
@@ -48,8 +62,7 @@ export class OlappRow extends LitElement {
     renderizarRow(){
         let n = this.encabezado.map((ele)=>{
             let color = this.verificaEstado(ele, this.cuerpo[this.columns[ele].identificador])
-            console.log(color)
-            if (ele != 'option') return html`<td class=${this.isChecked ? 'row_selected '+color : color}>${this.cuerpo[this.columns[ele].identificador]}</td>`
+            if (ele != 'option') return html`<td class=${this.isChecked ? 'row_selected '+color : color}><div>${this.cuerpo[this.columns[ele].identificador]}</div></td>`
         })
         let input = [html`<td class=${this.isChecked ? 'row_selected' : ''}>${this.renderInput()}</td>`]
         return input.concat(n)
@@ -70,8 +83,8 @@ export class OlappRow extends LitElement {
     verificaEstado(ele, nombre){
         if(this.columns[ele].reglas && this.columns[ele].reglas.length){
             let columns = this.columns[ele].reglas.filter(content => content.estado == nombre)
-            if(columns.length > 0 ) return columns[0].color
-            return ''         
+            if(columns.length > 0 ) return columns[0].color + ' centrar'
+            return 'centrar'         
         }else{
             return ''
         }

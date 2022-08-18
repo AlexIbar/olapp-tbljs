@@ -50,7 +50,6 @@ export class OlappInfoContent extends LitElement {
         };
     }
     render() {
-        console.log(this.content)
         let titles = Object.keys(this.content)
         return html`<div class="contenido">
             <div>

@@ -16,6 +16,9 @@
       --olapp-color-primary: rgb(37, 103, 173);
       --olapp-color-secondary:rgb(255,209,0);
       --olapp-2n-background-rows:#f2f2f28f;
+      --olapp-color-warning:rgba(243, 243, 156, 0.68);
+      --olapp-color-danger:#ffdddd;
+      --olapp-color-successful:rgb(5 186 5 / 20%)
     }
   </style>
 </head>
@@ -37,35 +40,30 @@
         title:"Número de pedido",
         filter:true,
         identificador:"pedido",
-        reglas:[]
       },
       "fecha":{
         type:"date",
         title:"Fecha del pedido",
         filter:true,
         identificador:"fecha",
-        reglas:[]
       },
       "estado":{
         type:"string",
         title:"Estado del pedido",
         filter:true,
         identificador:"factura",
-        reglas:[]
       },
       "guia":{
         type:"string",
         title:"Número de guía",
         filter:true,
         identificador:"guia",
-        reglas:[]
       },
       "cantidad":{
         type:"number",
         title:"Número de articulos",
         filter:true,
         identificador:"articulos",
-        reglas:[]
       },
       "impreso":{
         type:"string",
@@ -75,8 +73,7 @@
         reglas:[
           {
             estado:"Generada",
-            color:"successful",
-            todo:true
+            color:"successful"
           }
         ]
       }

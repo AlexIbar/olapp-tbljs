@@ -56,6 +56,7 @@ export const styleGeneral = css`
       overflow:hidden
     }
     .cabecera>div{
+      border-radius: 5px 5px 0px 0px;
       background-color:var(--olapp-header-background, #ffffff)
     }
     .cuerpo{

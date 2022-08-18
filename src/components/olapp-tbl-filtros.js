@@ -30,7 +30,7 @@ export class OlappTblFiltros extends LitElement {
             }
             .section-filter{
                 padding-top:10px;
-                height:calc(100% - 51px);
+                height:calc(100% - 51px - 30px);
                 display:grid;
                 grid-template-rows:31px minmax(200px, 1fr) 50px;
                 grid-gap:5px
@@ -55,6 +55,11 @@ export class OlappTblFiltros extends LitElement {
             input[type="checkbox"]{
                 width:20px;
                 height:20px
+            }
+            .titulo{
+                text-align: center;
+                font-size: 1.3em;
+                font-weight: 600;
             }
 
         `
@@ -84,8 +89,10 @@ export class OlappTblFiltros extends LitElement {
     firstUpdated(){
     }
     render() {
+        console.log(this.columns)
         return html`<div @click=${this._cerrar} id="cerrar">
             <div class="window-filter">
+                <div class="titulo">${this.columns[this.visible].title}</div>
                 <olapp-reorder-column .columns=${this.columns}></olapp-reorder-column>
                 <section class="section-filter">
                     <input type="text" @keyup=${this._filtroTexto}>
