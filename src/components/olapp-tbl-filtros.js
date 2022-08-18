@@ -61,12 +61,12 @@ export class OlappTblFiltros extends LitElement {
     ];
     static get properties() {
         return {
-            maestros: { type: Object,noAccessor:true, reflect:false},
-            filtrada: { type: Object,noAccessor:true, reflect:false},
+            maestros: { type: Object},
+            filtrada: { type: Object},
             //identificador: { type: String, reflect: true },
-            visible: { type: String,noAccessor:true, reflect:false},
+            visible: { type: String},
             //initFilter: { type: String, reflect: true },
-            copia:{ type: Array,noAccessor:true, reflect:false},
+            copia:{ type: Array},
             columns: {type:Object},
             columnsKeys:{type:Array}
         };
@@ -77,12 +77,11 @@ export class OlappTblFiltros extends LitElement {
     connectedCallback(){
         super.connectedCallback()
         const n =this.maestros[this.visible].data
-            this.filtrada = n
+            this.filtrada = [...n]
             let maes=this.maestros[this.visible].data
             this.copia = [...maes]
     }
     firstUpdated(){
-        console.log(this.maestros)
     }
     render() {
         return html`<div @click=${this._cerrar} id="cerrar">
@@ -104,6 +103,7 @@ export class OlappTblFiltros extends LitElement {
         </div>`;
     }
     _renderInit() {
+        console.log('render')
         return this.copia.map((element)=>{
             let checked = this.filtrada.find(ele=> ele== element)
             if(checked == -1 || checked == undefined){
@@ -132,9 +132,11 @@ export class OlappTblFiltros extends LitElement {
             let n = maes.filter(element=> element.search(texto) != -1 ? true : false)
             this.copia = n
             this.filtrada=[...n]
+            console.log(this.copia)
+            console.log(this.filtrada)
         }else{
             this.copia = [...this.maestros[this.visible].data]
-            this.filtrada =  {...this.maestros[this.visible].data}
+            this.filtrada =  [...this.maestros[this.visible].data]
         }
     }
     _aceptar(){

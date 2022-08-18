@@ -146,7 +146,6 @@ export default class OlappTbl extends LitElement {
     }
   }
   _newFiltro(e) {
-    console.log(this.maestros)
     let tipo = e.detail.type
     if (tipo == "date") {
       this.copia = this.datos.filter(element => {
