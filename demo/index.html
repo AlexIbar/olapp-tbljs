@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background: #fafafa;
+    }
+    :root{
+      --olapp-header-background:rgb(58, 123, 191);
+      --olapp-header-color:white;
+      --olapp-header-hover:rgb(37, 103, 173);
+      --olapp-color-primary: rgb(37, 103, 173);
+      --olapp-color-secondary:rgb(255,209,0);
+      --olapp-2n-background-rows:#f2f2f28f;
+    }
+  </style>
+</head>
+<body>
+  <div id="demo"></div>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae sint eos iure earum aliquid amet. Dicta, deserunt odit! Voluptatum perspiciatis nisi laborum quibusdam quisquam minus similique voluptatem explicabo quo? Enim!</p>
+  <script type="module">
+    import { html, render } from 'lit';
+    import '../olapp-tbljs.js';
+    
+    const columns = {
+      "option":{
+        type:"input",
+        title:"#",
+        filter:false
+      },
+      "pedido":{
+        type:"string",
+        title:"Número de pedido",
+        filter:true,
+        identificador:"pedido"
+      },
+      "fecha":{
+        type:"date",
+        title:"Fecha del pedido",
+        filter:true,
+        identificador:"fecha"
+      },
+      "estado":{
+        type:"string",
+        title:"Estado del pedido",
+        filter:true,
+        identificador:"factura"
+      },
+      "guia":{
+        type:"string",
+        title:"Número de guía",
+        filter:true,
+        identificador:"guia"
+      },
+      "cantidad":{
+        type:"number",
+        title:"Número de articulos",
+        filter:true,
+        identificador:"articulos"
+      },
+      "impreso":{
+        type:"string",
+        title:"Impreso",
+        filter:true,
+        identificador:"impreso"
+      }
+
+    }
+    fetch('http://localhost:3000/pedidos')
+    .then((response)=>{
+      return response.json()
+    })
+    .then(response=>{
+      render(
+      html`
+        <olapp-tbljs .datos=${response} .columns=${columns}>
+          some light-dom
+        </olapp-tbljs>
+      `,
+      document.querySelector('#demo')
+    );
+    })
+  </script>
+</body>
+</html>
