@@ -1,9 +1,9 @@
 {
   "name": "olapp-tbljs",
-  "description": "Webcomponent olapp-tbljs following open-wc recommendations",
+  "description": "Componente Lit para renderizar un objeto JSON como tabla",
   "license": "MIT",
   "author": "olapp-tbljs",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "main": "index.js",
   "module": "index.js",
   "scripts": {
@@ -13,8 +13,7 @@
     "test:watch": "web-test-runner --watch"
   },
   "dependencies": {
-    "lit": "^2.0.2",
-    "lit-moveable": "^0.12.1"
+    "lit": "^2.0.2"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.4.17",

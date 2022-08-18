@@ -21,7 +21,7 @@
 ## Diseño de la información que recibe: 
 
 #### -  Columns
-```json
+```js
 this.columns = {
     option:{
         type:"input",
@@ -45,14 +45,14 @@ this.columns = {
 ```
 
 #### -  Datos
-```json
+```js
 this.datos = {
     {
-        "impreso": "Generada"
+        impreso: "Generada"
     },
     {
-        "impreso": "Generar"
-    },
+        impreso: "Generar"
+    }
 }
 
 ```
