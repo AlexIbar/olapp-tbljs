@@ -6,7 +6,14 @@ export class OlappRow extends LitElement {
         styleGeneral,
         css`
             td{
-                padding-left:5px
+                padding: 5px;
+                text-align: center;
+                border-radius: 5px;
+                box-sizing:border-box
+            }
+            .successful{
+                background-color:#00800069 !important;
+                color: white;
             }
         `
     ]
@@ -40,7 +47,9 @@ export class OlappRow extends LitElement {
     }
     renderizarRow(){
         let n = this.encabezado.map((ele)=>{
-            if (ele != 'option') return html`<td class=${this.isChecked ? 'row_selected' : ''}>${this.cuerpo[this.columns[ele].identificador]}</td>`
+            let color = this.verificaEstado(ele, this.cuerpo[this.columns[ele].identificador])
+            console.log(color)
+            if (ele != 'option') return html`<td class=${this.isChecked ? 'row_selected '+color : color}>${this.cuerpo[this.columns[ele].identificador]}</td>`
         })
         let input = [html`<td class=${this.isChecked ? 'row_selected' : ''}>${this.renderInput()}</td>`]
         return input.concat(n)
@@ -57,6 +66,15 @@ export class OlappRow extends LitElement {
             ${ this.isChecked ? html`<style> :host {background-color:#eeeeee}</style>` : ''}
             <div>${done}</div>
         </div>`
+    }
+    verificaEstado(ele, nombre){
+        if(this.columns[ele].reglas && this.columns[ele].reglas.length){
+            let columns = this.columns[ele].reglas.filter(content => content.estado == nombre)
+            if(columns.length > 0 ) return columns[0].color
+            return ''         
+        }else{
+            return ''
+        }
     }
     /* createRenderRoot(){
         return this

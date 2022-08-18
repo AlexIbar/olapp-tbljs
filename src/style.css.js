@@ -73,7 +73,7 @@ export const styleGeneral = css`
       font-weight:600
     }
     .cuerpo>div olapp-row{
-      height:48px;
+      height:58px;
       align-items:center;
       border-bottom:1px solid #e2e2e2;
       transition: transform .4s,top .4s,background-color .1s,opacity .2s;
@@ -136,7 +136,7 @@ export const styleGeneral = css`
         fill:#1058cb
     }
     olapp-row td {
-        height:48px;
+        height:58px;
         display:flex;
         align-items:center
     }

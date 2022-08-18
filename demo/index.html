@@ -36,37 +36,49 @@
         type:"string",
         title:"Número de pedido",
         filter:true,
-        identificador:"pedido"
+        identificador:"pedido",
+        reglas:[]
       },
       "fecha":{
         type:"date",
         title:"Fecha del pedido",
         filter:true,
-        identificador:"fecha"
+        identificador:"fecha",
+        reglas:[]
       },
       "estado":{
         type:"string",
         title:"Estado del pedido",
         filter:true,
-        identificador:"factura"
+        identificador:"factura",
+        reglas:[]
       },
       "guia":{
         type:"string",
         title:"Número de guía",
         filter:true,
-        identificador:"guia"
+        identificador:"guia",
+        reglas:[]
       },
       "cantidad":{
         type:"number",
         title:"Número de articulos",
         filter:true,
-        identificador:"articulos"
+        identificador:"articulos",
+        reglas:[]
       },
       "impreso":{
         type:"string",
         title:"Impreso",
         filter:true,
-        identificador:"impreso"
+        identificador:"impreso",
+        reglas:[
+          {
+            estado:"Generada",
+            color:"successful",
+            todo:true
+          }
+        ]
       }
 
     }
