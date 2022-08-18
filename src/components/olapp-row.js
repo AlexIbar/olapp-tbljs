@@ -18,7 +18,9 @@ export class OlappRow extends LitElement {
             isChecked:{
                 type:Boolean,
                 reflect:true
-            }
+            },
+            selectMultiple: {type:Boolean},
+            selected:{type:String}
         };
     }
     constructor(){
@@ -44,6 +46,13 @@ export class OlappRow extends LitElement {
         return input.concat(n)
     }
     renderInput(){
+        if(this.selectMultiple == false && this.selected != JSON.stringify(this.cuerpo)){
+            this.isChecked = false
+        }
+        if(this.selectMultiple == false && this.selected == JSON.stringify(this.cuerpo)){
+            this.isChecked = true
+        }
+
         return html`<div @click=${this._checked} class=${this.isChecked ? 'input_checked' : 'input_check'}>
             ${ this.isChecked ? html`<style> :host {background-color:#eeeeee}</style>` : ''}
             <div>${done}</div>
@@ -54,6 +63,14 @@ export class OlappRow extends LitElement {
     } */
     _checked(){
         this.isChecked=!this.isChecked
+        this.dispatchEvent(new CustomEvent('olapp-change-check', {
+            bubbles:true,
+            composed:true,
+            detail:{
+                status:this.isChecked,
+                data:this.cuerpo
+            }
+        }));
     }
     _viewContent(thiss){
         thiss.dispatchEvent(new CustomEvent('olapp-view-content', {

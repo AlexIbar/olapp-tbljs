@@ -77,12 +77,15 @@
     .then(response=>{
       render(
       html`
-        <olapp-tbljs .datos=${response} .columns=${columns}>
+        <olapp-tbljs id="tbl" .datos=${response} .columns=${columns} .selectMultiple=${false}>
           some light-dom
         </olapp-tbljs>
       `,
       document.querySelector('#demo')
     );
+    document.getElementById('tbl').addEventListener('olapp-change-check', function(e){
+      console.log(e.detail)
+    })
     })
   </script>
 </body>

@@ -22,7 +22,9 @@ export default class OlappTbl extends LitElement {
       datFiltrada: { type: Array },
       initFilter: { type: String },
       copia: { type: Array },
-      viewContent: { type: Object }
+      viewContent: { type: Object },
+      selectMultiple: {type:Boolean},
+      selected:{type:String}
     };
   }
 
@@ -39,6 +41,8 @@ export default class OlappTbl extends LitElement {
     this.datFiltrada = []
     this.initFilter = ""
     this.viewContent = null
+    this.selected=""
+    this.selectMultiple=true
   }
 
   firstUpdated() {
@@ -110,7 +114,7 @@ export default class OlappTbl extends LitElement {
     let inicio = (fin % this.cantidad == 0 ? fin - this.cantidad : this.cantidad * (this.activo - 1))
     let datosSlice = this.copia.slice(inicio, fin)
     return datosSlice.map(element => {
-      return html`<div><olapp-row @olapp-view-content=${this._mostrarContent} .columns=${this.columns} .cuerpo=${element}></olapp-row></olapp-row></div>`
+      return html`<div><olapp-row @olapp-view-content=${this._mostrarContent} @olapp-change-check=${this._changeCheck} .selectMultiple=${this.selectMultiple} selected=${this.selected} .columns=${this.columns} .cuerpo=${element}></olapp-row></olapp-row></div>`
     })
   }
 
@@ -178,5 +182,8 @@ export default class OlappTbl extends LitElement {
   }
   _changeOrderColumn(e){
     this.columns=e.detail
+  }
+  _changeCheck(e){
+    this.selected = JSON.stringify(e.detail.data)
   }
 }

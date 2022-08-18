@@ -103,7 +103,6 @@ export class OlappTblFiltros extends LitElement {
         </div>`;
     }
     _renderInit() {
-        console.log('render')
         return this.copia.map((element)=>{
             let checked = this.filtrada.find(ele=> ele== element)
             if(checked == -1 || checked == undefined){
@@ -126,14 +125,15 @@ export class OlappTblFiltros extends LitElement {
         }
     }
     _filtroTexto(e){
-        let texto = e.target.value
+        let texto = e.target.value.toLowerCase()
         let maes = [...this.maestros[this.visible].data]
         if(texto.length >= 0){
-            let n = maes.filter(element=> element.search(texto) != -1 ? true : false)
+            let n = maes.filter(element=>{
+                let ele = element.toLowerCase()
+                return ele.search(texto) != -1 ? true : false
+            })
             this.copia = n
             this.filtrada=[...n]
-            console.log(this.copia)
-            console.log(this.filtrada)
         }else{
             this.copia = [...this.maestros[this.visible].data]
             this.filtrada =  [...this.maestros[this.visible].data]
